@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELARA - Portofolio Model Premium</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tabler Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <!-- DataTables Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/datatables.net-bs5@1.13.7/css/dataTables.bootstrap5.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- BRANDING & VARIABLES --- */
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #121212;
+            --gold: #d4af37;
+            --gold-hover: #f3e5ab;
+            --text-light: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .navbar-brand-custom {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            color: var(--gold) !important;
+            text-decoration: none;
+        }
+
+        .nav-link-custom {
+            color: var(--text-muted) !important;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.4s;
+            padding: 0 1.5rem !important;
+        }
+
+        .nav-link-custom:hover, .nav-link-custom.active {
+            color: var(--gold) !important;
+        }
+
+        .btn-booking {
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 0.6rem 1.5rem;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+
+        .btn-booking:hover {
+            background-color: var(--gold);
+            color: var(--bg-dark);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle, rgba(20,20,20,1) 0%, rgba(5,5,5,1) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 150px;
+            background: var(--gold);
+            bottom: 0;
+            opacity: 0.5;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: 4.5rem;
+            font-weight: 400;
+            letter-spacing: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h1 span {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* --- STYLE CARD BOOTSTRAP --- */
+        .premium-blog {
+            padding: 8rem 0 4rem;
+            background-color: #050505;
+        }
+
+        .premium-blog .section-title, .search-section .section-title {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .premium-blog .card {
+            background-color: var(--bg-card) !important;
+            border: 1px solid rgba(212, 175, 55, 0.15) !important;
+            border-radius: 0px !important;
+            transition: all 0.4s ease;
+        }
+
+        .premium-blog .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold) !important;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1) !important;
+        }
+
+        .premium-blog .card-body {
+            background-color: var(--bg-card);
+        }
+
+        .premium-blog .text-dark, .premium-blog .link-primary {
+            color: var(--text-light) !important;
+            text-decoration: none;
+            font-family: var(--font-serif);
+            transition: color 0.3s;
+        }
+
+        .premium-blog .link-primary:hover {
+            color: var(--gold) !important;
+        }
+
+        .premium-blog .text-bg-light {
+            background-color: var(--gold) !important;
+            color: var(--bg-dark) !important;
+            border-radius: 0px;
+        }
+
+        .premium-blog .text-muted-custom {
+            color: var(--text-muted) !important;
+        }
+
+        .hover-img img {
+            transition: transform 0.5s ease;
+        }
+        .hover-img:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- CUSTOM DATATABLES & CUSTOM SEARCH MENU --- */
+        .search-section {
+            padding: 6rem 0 10rem;
+            background-color: var(--bg-dark);
+        }
+
+        .search-box-wrapper {
+            margin-bottom: 3rem;
+        }
+
+        .custom-search-menu {
+            background-color: var(--bg-card) !important;
+            border: 1px solid rgba(212, 175, 55, 0.4) !important;
+            color: var(--text-light) !important;
+            border-radius: 0px !important;
+            padding: 14px 14px 14px 45px;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .custom-search-menu:focus {
+            border-color: var(--gold) !important;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3) !important;
+            outline: none;
+        }
+
+        .text-gold {
+            color: var(--gold) !important;
+        }
+
+        /* Sembunyikan search box bawaan agar tidak double */
+        .dataTables_filter {
+            display: none;
+        }
+
+        .custom-table-container {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 2.5rem;
+        }
+
+        .table-premium {
+            color: var(--text-light) !important;
+            border-color: rgba(212, 175, 55, 0.1) !important;
+        }
+
+        .table-premium th {
+            font-family: var(--font-serif);
+            color: var(--gold) !important;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--gold) !important;
+        }
+
+        .table-premium td {
+            vertical-align: middle;
+            background-color: var(--bg-card) !important;
+            color: var(--text-muted) !important;
+        }
+
+        .table-premium tr:hover td {
+            color: var(--text-light) !important;
+            background-color: #1a1a1a !important;
+        }
+
+        .dataTables_wrapper .dataTables_length select {
+            background-color: #1a1a1a !important;
+            border: 1px solid rgba(212, 175, 55, 0.3) !important;
+            color: var(--text-light) !important;
+            border-radius: 0px !important;
+            padding: 0.25rem 1.5rem 0.25rem 0.75rem;
+        }
+
+        /* Desain Pagination DataTables */
+        .page-item.active .page-link {
+            background-color: var(--gold) !important;
+            border-color: var(--gold) !important;
+            color: var(--bg-dark) !important;
+        }
+
+        .page-link {
+            background-color: #1a1a1a !important;
+            color: var(--gold) !important;
+            border: 1px solid rgba(212, 175, 55, 0.2) !important;
+        }
+
+        .page-link:hover {
+            background-color: var(--gold) !important;
+            color: var(--bg-dark) !important;
+        }
+
+        .dataTables_info {
+            color: var(--text-muted) !important;
+            font-size: 0.85rem;
+        }
+
+        /* --- STYLING MODAL PREMIUM --- */
+        .modal-content-custom {
+            background-color: var(--bg-card) !important;
+            border: 1px solid var(--gold) !important;
+            color: var(--text-light);
+            border-radius: 0px !important;
+        }
+        .modal-header-custom {
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2) !important;
+        }
+        .modal-footer-custom {
+            border-top: 1px solid rgba(212, 175, 55, 0.2) !important;
+        }
+        .modal-title-custom {
+            font-family: var(--font-serif);
+            color: var(--gold);
+        }
+        .btn-close-white {
+            filter: invert(1) grayscale(1) brightness(2);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: #0a0a0a;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGASI -->
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container py-2">
+                <a href="#" class="navbar-brand-custom">ELARA</a>
+                <div class="collapse navbar-collapse justify-content-center">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a href="#home" class="nav-link nav-link-custom active">Beranda</a></li>
+                        <li class="nav-item"><a href="#editorial" class="nav-link nav-link-custom">Editorial</a></li>
+                        <li class="nav-item"><a href="#arsip" class="nav-link nav-link-custom">Arsip Cari</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="btn-booking" id="btnHubungi">Hubungi</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p>Model Komersial & High-Fashion</p>
+            <h1>Seni Menemukan <span>Keanggunan</span></h1>
+        </div>
+    </section>
+
+    <!-- SECTION EDITORIAL / BLOG -->
+    <section class="premium-blog" id="editorial">
+        <div class="container">
+            <h2 class="section-title">Liputan Utama</h2>
+            
+            <div class="row g-4 justify-content-center">
+                <!-- CARD UTAMA -->
+                <div class="col-lg-4 col-md-6">
+                  <div class="card overflow-hidden hover-img">
+                    <div class="position-relative">
+                      <a href="#" data-bs-toggle="modal" data-bs-target="#modalCard1">
+                        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="elara-editorial">
+                      </a>
+                      <span class="badge text-bg-light text-dark fs-2 lh-sm mb-3 me-3 py-1 px-2 fw-semibold position-absolute bottom-0 end-0">2 min Read</span>
+                      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="elara-profile" class="img-fluid rounded-circle position-absolute bottom-0 start-0 mb-n3 ms-3" width="40" height="40" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Georgeanna Ramero">
+                    </div>
+                    <div class="card-body p-4">
+                      <span class="badge text-bg-light fs-2 py-1 px-2 lh-sm mt-3">Komersial</span>
+                      <a class="d-block my-4 fs-5 text-dark fw-semibold link-primary" href="#" data-bs-toggle="modal" data-bs-target="#modalCard1">
+                        Membawa Esensi Busana Vintage Jepang ke Panggung Utama Mode Dunia
+                      </a>
+                      <div class="d-flex align-items-center gap-4 text-muted-custom">
+                        <div class="d-flex align-items-center gap-2"><i class="ti ti-eye fs-5 text-gold"></i>9,125</div>
+                        <div class="d-flex align-items-center gap-2"><i class="ti ti-message-2 fs-5 text-gold"></i>3</div>
+                        <div class="d-flex align-items-center fs-2 ms-auto"><i class="ti ti-point text-gold"></i>Senin, 19 Des</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="col-lg-4 col-md-6">
+                  <div class="card overflow-hidden hover-img">
+                    <div class="position-relative">
+                      <a href="#" data-bs-toggle="modal" data-bs-target="#modalCard2">
+                        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="elara-editorial">
+                      </a>
+                      <span class="badge text-bg-light text-dark fs-2 lh-sm mb-3 me-3 py-1 px-2 fw-semibold position-absolute bottom-0 end-0">5 min Read</span>
+                      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="elara-profile" class="img-fluid rounded-circle position-absolute bottom-0 start-0 mb-n3 ms-3" width="40" height="40">
+                    </div>
+                    <div class="card-body p-4">
+                      <span class="badge text-bg-light fs-2 py-1 px-2 lh-sm mt-3">High-Fashion</span>
+                      <a class="d-block my-4 fs-5 text-dark fw-semibold link-primary" href="#" data-bs-toggle="modal" data-bs-target="#modalCard2">
+                        Sorotan Utama Runway Paris Autumn/Winter: Sentuhan Sutra Emas
+                      </a>
+                      <div class="d-flex align-items-center gap-4 text-muted-custom">
+                        <div class="d-flex align-items-center gap-2"><i class="ti ti-eye fs-5 text-gold"></i>14,230</div>
+                        <div class="d-flex align-items-center gap-2"><i class="ti ti-message-2 fs-5 text-gold"></i>12</div>
+                        <div class="d-flex align-items-center fs-2 ms-auto"><i class="ti ti-point text-gold"></i>Kamis, 12 Mar</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- SECTION: ARSIP & CUSTOM SEARCH BAR DATATABLES --- -->
+    <section class="search-section" id="arsip">
+        <div class="container">
+            <h2 class="section-title">Cari Database & Arsip Projek</h2>
+            
+            <!-- MENU MENU PENCARIAN KUSTOM (MENU SEARCH) -->
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="search-box-wrapper position-relative">
+                        <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y ms-3 text-gold fs-4"></i>
+                        <input type="text" id="customSearchInput" class="form-control custom-search-menu" placeholder="Ketik kata kunci untuk mencari di tabel...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- TABEL DATA -->
+            <div class="custom-table-container table-responsive">
+                <table id="tabelEditorial" class="table table-premium table-hover w-100">
+                    <thead>
+                        <tr>
+                            <th>Projek / Judul Editorial</th>
+                            <th>Kategori</th>
+                            <th>Klien / Majalah</th>
+                            <th>Tanggal Rilis</th>
+                            <th>Viewer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Membawa Esensi Busana Vintage Jepang ke Panggung Utama</td>
+                            <td>Komersial</td>
+                            <td>Tokyo Fashion Journal</td>
+                            <td>2025-12-19</td>
+                            <td>9,125</td>
+                        </tr>
+                        <tr>
+                            <td>Sorotan Utama Runway Paris Autumn/Winter: Sentuhan Sutra Emas</td>
+                            <td>High-Fashion</td>
+                            <td>Vogue France</td>
+                            <td>2026-03-12</td>
+                            <td>14,230</td>
+                        </tr>
+                        <tr>
+                            <td>Eksplorasi Minimalisme Sinematik Noir Urban</td>
+                            <td>Editorial Foto</td>
+                            <td>Harper's Bazaar</td>
+                            <td>2026-01-05</td>
+                            <td>8,440</td>
+                        </tr>
+                        <tr>
+                            <td>Kampanye Perhiasan Berlian Seri Royal Gala</td>
+                            <td>Komersial</td>
+                            <td>Tiffany & Co.</td>
+                            <td>2026-05-20</td>
+                            <td>21,900</td>
+                        </tr>
+                        <tr>
+                            <td>Milan Fashion Week Summer Vibe Series</td>
+                            <td>High-Fashion</td>
+                            <td>Elle Magazine</td>
+                            <td>2025-09-14</td>
+                            <td>11,050</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- MODAL SYSTEM --- -->
+    <div class="modal fade" id="modalCard1" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content modal-content-custom">
+          <div class="modal-header modal-header-custom">
+            <h5 class="modal-title modal-title-custom">Detail Editorial — Komersial</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=80" class="img-fluid mb-4" alt="elara-large">
+            <h3 style="color: var(--gold); font-family: var(--font-serif);" class="mb-3">Membawa Esensi Busana Vintage Jepang ke Panggung Utama Mode Dunia</h3>
+            <p style="color: var(--text-muted); line-height: 1.8;">Dalam projek editorial eksklusif ini, Elara mempersembahkan perpaduan siluet tradisional berstruktur tegas dengan sentuhan modern minimalis.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalCard2" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content modal-content-custom">
+          <div class="modal-header modal-header-custom">
+            <h5 class="modal-title modal-title-custom">Detail Editorial — High-Fashion</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=80" class="img-fluid mb-4" alt="elara-large">
+            <h3 style="color: var(--gold); font-family: var(--font-serif);" class="mb-3">Sorotan Utama Runway Paris Autumn/Winter: Sentuhan Sutra Emas</h3>
+            <p style="color: var(--text-muted); line-height: 1.8;">Penampilan legendaris Elara di Paris Fashion Week musim ini dinilai sebagai penutup peragaan busana terbaik tahun ini.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 ELARA Model Management. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <!-- REQ SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables JS core & Bootstrap integration -->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // 1. Inisialisasi DataTable ke variabel 'table'
+            var table = $('#tabelEditorial').DataTable({
+                "pageLength": 5,
+                "lengthMenu": [5, 10, 25],
+                "dom": 'lrtip', // l=length, r=processing, t=table, i=info, p=pagination (tanpa f=filter/search box bawaan)
+                "language": {
+                    "lengthMenu": "Tampilkan _MENU_ data",
+                    "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ arsip eksklusif",
+                    "infoEmpty": "Arsip tidak ditemukan",
+                    "zeroRecords": "Tidak ada kecocokan data yang ditemukan",
+                    "paginate": {
+                        "next": "Lanjut",
+                        "previous": "Kembali"
+                    }
+                }
+            });
+
+            // 2. Logika Menghubungkan Menu Input Search Kustom ke DataTable
+            $('#customSearchInput').on('keyup', function() {
+                table.search(this.value).draw();
+            });
+        });
+
+        // Tooltip Bootstrap
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+        document.getElementById('btnHubungi').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert("Menghubungkan ke Manajer Pemasaran Elara.");
+        });
+    </script>
+</body>
+</html>
