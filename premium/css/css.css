@@ -1,0 +1,254 @@
+
+        /* === CSS LUXURY DARK THEME & OVERRIDES === */
+        :root {
+            --bg-color: #0d0d0d;
+            --card-bg: #1a1a1a;
+            --text-main: #f2f2f2;
+            --text-muted: #a0a0a0;
+            --accent-gold: #D4AF37;
+            --accent-gold-hover: #b5952f;
+            --border-color: #333333;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Navbar Styles --- */
+        navbar {
+            position: sticky;
+            top: 0;
+            background-color: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 35px;
+            width: auto;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, 
+        .nav-links a.active {
+            color: var(--accent-gold);
+        }
+
+        .search-container {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .search-container .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 0.6rem 1.2rem 0.6rem 2.8rem; /* Padding kiri ditambahkan untuk ikon */
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            border-radius: 30px;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-container input:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .search-container input:focus ~ .search-icon {
+            color: var(--accent-gold);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: var(--accent-gold);
+            transition: all 0.3s ease;
+        }
+
+        /* --- Main Content & Typography --- */
+        main {
+            flex: 1;
+            padding: 3rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--text-main);
+        }
+
+        /* --- Card Styles (Bootstrap Overrides for Luxury Theme) --- */
+        .card {
+            background-color: var(--card-bg) !important;
+            border: 1px solid var(--border-color) !important;
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .hover-img:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold) !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+        }
+
+        .hover-img .card-img-top {
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .hover-img:hover .card-img-top {
+            transform: scale(1.08);
+        }
+
+        /* Override Bootstrap classes to fit Dark Theme */
+        .text-dark { color: var(--text-muted) !important; }
+        .text-bg-light { 
+            background-color: rgba(255, 255, 255, 0.1) !important; 
+            color: var(--accent-gold) !important; 
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        .link-primary { color: var(--text-main) !important; font-family: 'Playfair Display', serif; transition: color 0.3s ease; }
+        .hover-img:hover .link-primary { color: var(--accent-gold) !important; }
+
+        /* Custom Spacing */
+        .mb-9 { margin-bottom: 20px !important; }
+        .me-9 { margin-right: 20px !important; }
+        .ms-9 { margin-left: 20px !important; }
+        .mb-n9 { margin-bottom: -22px !important; z-index: 2; border: 3px solid var(--card-bg); }
+
+        /* Pagination Custom */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 4rem;
+            gap: 0.5rem;
+        }
+
+        .page-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .page-btn.active {
+            background-color: var(--accent-gold);
+            color: #000;
+            border-color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .page-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Empty State */
+        .empty-state { text-align: center; padding: 3rem; color: var(--text-muted); font-size: 1.2rem; font-family: 'Playfair Display', serif; width: 100%; }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 900px) {
+            .hamburger { display: flex; }
+            .nav-wrapper {
+                position: absolute;
+                top: 100%; left: 0; width: 100%;
+                background-color: rgba(13, 13, 13, 0.98);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid var(--border-color);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1.5rem 5%; gap: 1.5rem;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: clip-path 0.4s ease-in-out;
+            }
+            .nav-wrapper.active { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            .nav-links { flex-direction: column; width: 100%; gap: 1rem; }
+            .nav-links li { width: 100%; border-bottom: 1px solid #222; padding-bottom: 0.5rem; }
+            .search-container { max-width: 100%; }
+
+            /* Animasi Hamburger */
+            .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        }

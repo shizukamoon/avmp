@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Siluet Sepatu Hak Tinggi -->
+  <path d="M 20 85 
+           C 40 85, 50 65, 60 55 
+           C 65 50, 75 40, 80 20 
+           L 95 20 
+           C 90 40, 85 50, 85 60 
+           L 85 90 
+           L 75 90 
+           L 75 65 
+           C 65 75, 50 95, 20 95 Z" 
+        fill="#E91E63" />
+</svg>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player - Shizuka</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="heel.svg">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Tabler Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+
+    <link rel="stylesheet" href="css/css.css">
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --nav-bg: #ffffff;
+            --text-main: #212529;
+            --text-muted: #6c757d;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+        }
+
+        /* Navbar Styles */
+        navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-container input {
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 1px solid #dee2e6;
+            border-radius: 20px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-container input:focus {
+            border-color: #adb5bd;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .nav-wrapper {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--nav-bg);
+                padding: 1rem 0;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            .nav-wrapper.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Player Custom Styles */
+        .video-player-wrapper {
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        video {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            display: block;
+        }
+        
+        /* Video Track Styling */
+        video::cue {
+            background-color: rgba(0, 0, 0, 0.75);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .badge-tag {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .related-video-card {
+            transition: transform 0.2s ease;
+        }
+        .related-video-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <navbar>
+        <a href="#" class="logo">
+            <!-- Gunakan placeholder atau biarkan logo asli -->
+            <i class="ti ti-crown"></i>Shizuka
+        </a>
+        
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+
+        <div class="nav-wrapper" id="navWrapper">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="#">Live</a></li>
+                <li><a href="#">Model</a></li>
+                <li><a href="#">Studio</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search">
+                <i class="ti ti-search search-icon"></i>
+            </div>
+        </div>
+    </navbar>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <div class="row g-4">
+            
+            <!-- Player Section -->
+            <div class="col-lg-8">
+                
+                <!-- Video Player -->
+                <div class="video-player-wrapper mb-4">
+                    <!-- Ditambahkan Tag Track untuk Caption/Subtitle -->
+                    <video id="mainVideo" controls poster="https://img.javfc2vid.top/image/javfc2.xyz/uploads/poster_image/20370.jpg">
+                        <!-- Menggunakan Dummy Video MP4 -->
+                        <source src="https://vip-videoprem5000.fc2.com/up/202607/13/5/X/cut20260713C9754W5X.mp4?mid=5d92ea8ab66391bcd78ae12ec7d162ac" type="video/mp4">
+                        Browser Anda tidak mendukung tag video HTML5.
+                    </video>
+                </div>
+
+                <!-- Video Details -->
+                <div class="video-details bg-white p-4 rounded shadow-sm">
+                    <div class="mb-3">
+                        <span class="badge text-bg-dark badge-tag py-1 px-2 me-1">FC2PPV-4938500</span>
+                        <span class="badge text-bg-danger badge-tag py-1 px-2">Full Uncensored</span>
+                    </div>
+                    
+                    <h1 class="h4 fw-bold mb-3">
+                        【無】大反響の女子アナ系色白美女降臨！上品な語り口調と見た目清楚系に反して隠語連発ドスケベ丸出し⤴網タイのナースコスが似合い過ぎ！　中だし2発　※特典高画質
+                    </h1>
+                    
+                    <div class="d-flex flex-wrap align-items-center gap-4 text-muted mb-4 border-bottom pb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="ti ti-eye fs-5"></i> 29.6K Views
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="ti ti-message-2 fs-5"></i> 0 Comments
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="ti ti-calendar fs-5"></i> 2026, Jul 17
+                        </div>
+                        <div class="ms-auto d-flex gap-2">
+                            <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+                                <i class="ti ti-thumb-up"></i> Like
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+                                <i class="ti ti-bookmark"></i> Save
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+                                <i class="ti ti-share"></i> Share
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="description-content">
+                        <h5 class="fw-semibold mb-3">About this video</h5>
+                        <p class="text-muted lh-lg">
+                            FC2-PPV-4938500 — [No] A highly anticipated **announcer-type fair-skinned beauty has arrived! Contrary to her elegant speaking style and innocent appearance, she's a total pervert who spouts slang⤴She looks amazing in her fishnet stocking nurse costume! Two cumshots inside her *Bonus: High-definition video<br>
+                            Model: <strong>Kasumi Takase</strong> <br>
+                            Studio: <strong>FC2-PPV</strong><br>
+                            Duration: <strong>01:00:27</strong><br>
+                            Tags: <a href="#" class="text-decoration-none text-primary">#Nurse</a>, <a href="#" class="text-decoration-none text-primary">#Cosplay</a>, <a href="#" class="text-decoration-none text-primary">#RealCreampie</a>
+                        </p>
+                    </div>
+                </div>
+            </div><!-- Sidebar / Related Videos -->
+            <div class="col-lg-4">
+                <div class="bg-white p-4 rounded shadow-sm">
+                    <h5 class="fw-bold border-bottom pb-2 mb-4">Related Videos</h5>
+                    
+                    <!-- Tambahkan ID relatedVideosContainer di sini -->
+                    <div class="d-flex flex-column gap-3" id="relatedVideosContainer">
+                        <!-- Related Card 1 -->
+                        <a href="#" class="text-decoration-none related-video-card">
+                            <div class="d-flex gap-3 align-items-start">
+                                <div class="position-relative" style="width: 45%;">
+                                    <img src="https://ppvdatabank.com/article/4884534/img/thumb.webp" class="img-fluid rounded" alt="cover">
+                                    <span class="position-absolute bottom-0 end-0 bg-dark text-white text-xs px-1 m-1 rounded" style="font-size: 0.7rem;">56:44</span>
+                                </div>
+                                <div class="w-50">
+                                    <h6 class="text-dark fw-semibold mb-1" style="font-size: 0.85rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                         【無】色白美乳！ウェザーニュース女子アナに居てもおかしくないビジュアル！知的な雰囲気で大人しそうな感じが豹変⤴急に「オ〇サンのチ〇ポ欲しい～」と懇願　ゴックン中だし※特典高画質</h6>
+                                    <span class="text-muted d-block" style="font-size: 0.75rem;">FC2PPV-4884534</span>
+                                    <span class="text-muted d-block mt-1" style="font-size: 0.75rem;"><i class="ti ti-eye"></i> 72.1K views</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Related Card 2 -->
+                        <a href="#" class="text-decoration-none related-video-card">
+                            <div class="d-flex gap-3 align-items-start">
+                                <div class="position-relative" style="width: 45%;">
+                                    <img src="https://ppvdatabank.com/article/4889712/img/thumb.webp" class="img-fluid rounded" alt="cover">
+                                    <span class="position-absolute bottom-0 end-0 bg-dark text-white text-xs px-1 m-1 rounded" style="font-size: 0.7rem;">41:16</span>
+                                </div>
+                                <div class="w-50">
+                                    <h6 class="text-dark fw-semibold mb-1" style="font-size: 0.85rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                         【無】大反響の女子アナ系清楚系美女！この感じが本来のこの女性の姿なのかもしれません⤴あの余裕ある笑みの秘密が凄すぎた…、ワンカット撮影での臨場感！　※特典高画質</h6>
+                                    <span class="text-muted d-block" style="font-size: 0.75rem;">FC2PPV-4889712</span>
+                                    <span class="text-muted d-block mt-1" style="font-size: 0.75rem;"><i class="ti ti-eye"></i> 152.4K views</span>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- Related Card 3 -->
+                        <a href="#" class="text-decoration-none related-video-card">
+                            <div class="d-flex gap-3 align-items-start">
+                                <div class="position-relative" style="width: 45%;">
+                                    <img src="https://ppvdatabank.com/article/4930958/img/thumb.webp" class="img-fluid rounded" alt="cover">
+                                    <span class="position-absolute bottom-0 end-0 bg-dark text-white text-xs px-1 m-1 rounded" style="font-size: 0.7rem;">01:30:49</span>
+                                </div>
+                                <div class="w-50">
+                                    <h6 class="text-dark fw-semibold mb-1" style="font-size: 0.85rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                         【初撮り/SSS超絶美女の美裸体】超有名タレントファッションモデル事務所所属。圧倒的スタイルと洗練されたエロス。彼氏に内緒でオトコを惑わす熱くキツイ膣内に精液をぶちまける。</h6>
+                                    <span class="text-muted d-block" style="font-size: 0.75rem;">FC2PPV-4930958</span>
+                                    <span class="text-muted d-block mt-1" style="font-size: 0.75rem;"><i class="ti ti-eye"></i> 39.8K views</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Tambahkan ID showMoreBtn di sini -->
+                    <button id="showMoreBtn" class="btn btn-outline-primary w-100 mt-4 rounded-pill">Show More</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        /* === BURGER MENU LOGIC === */
+        const hamburger = document.getElementById('hamburger');
+        const navWrapper = document.getElementById('navWrapper');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navWrapper.classList.toggle('active');
+        });
+        
+        /* === SHOW MORE LOGIC === */
+        const showMoreBtn = document.getElementById('showMoreBtn');
+        const relatedVideosContainer = document.getElementById('relatedVideosContainer');
+
+        // Data tambahan (Dummy Data)
+        const extraRelatedVideos = [
+            {
+                link: "#",
+                coverImg: "https://pics.dmm.co.jp/mono/movie/adult/hsoda124/hsoda124pl.jpg",
+                duration: "1:45:20",
+                title: "Nanao Ayatsuki 彩月七緒",
+                code: "HSODA-124",
+                views: "88K views"
+            },
+            {
+                link: "#",
+                coverImg: "https://ppvdatabank.com/article/4938235/img/thumb.webp",
+                duration: "2:05:11",
+                title: "先着割【無】町一番の美女と昼間から汗だくセックス【特典有】",
+                code: "FC2PPV-4938235",
+                views: "210K views"
+            },
+            {
+                link: "#",
+                coverImg: "https://dream.hiyopi.com/071126_001/002.jpg",
+                duration: "1:12:00",
+                title: "Erina Hayakawa Graduation gift",
+                code: "1PONDO-071126_001",
+                views: "150K views"
+            }
+        ];
+
+        let currentItemIndex = 0;
+
+        showMoreBtn.addEventListener('click', () => {
+            // Kita load 3 item setiap kali klik
+            const itemsToLoad = 3;
+            let loadedCount = 0;
+
+            // Mengubah tombol menjadi status loading
+            const originalText = showMoreBtn.innerHTML;
+            showMoreBtn.innerHTML = `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Loading...`;
+            showMoreBtn.disabled = true;
+
+            // Simulasi proses loading (misal: fetching dari API)
+            setTimeout(() => {
+                while (loadedCount < itemsToLoad && currentItemIndex < extraRelatedVideos.length) {
+                    const video = extraRelatedVideos[currentItemIndex];
+                    
+                    const cardHTML = `
+                        <a href="${video.link}" class="text-decoration-none related-video-card">
+                            <div class="d-flex gap-3 align-items-start mt-3">
+                                <div class="position-relative" style="width: 45%;">
+                                    <img src="${video.coverImg}" class="img-fluid rounded" alt="cover">
+                                    <span class="position-absolute bottom-0 end-0 bg-dark text-white text-xs px-1 m-1 rounded" style="font-size: 0.7rem;">${video.duration}</span>
+                                </div>
+                                <div class="w-50">
+                                    <h6 class="text-dark fw-semibold mb-1" style="font-size: 0.85rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${video.title}</h6>
+                                    <span class="text-muted d-block" style="font-size: 0.75rem;">${video.code}</span>
+                                    <span class="text-muted d-block mt-1" style="font-size: 0.75rem;"><i class="ti ti-eye"></i> ${video.views}</span>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                    
+                    relatedVideosContainer.insertAdjacentHTML('beforeend', cardHTML);
+                    currentItemIndex++;
+                    loadedCount++;
+                }
+
+                // Kembalikan tombol ke keadaan semula
+                showMoreBtn.innerHTML = originalText;
+                showMoreBtn.disabled = false;
+
+                // Jika data sudah habis, hilangkan tombol Show More
+                if (currentItemIndex >= extraRelatedVideos.length) {
+                    showMoreBtn.style.display = 'none';
+                }
+            }, 600); // delay 600ms untuk efek loading
+        });
+    </script>
+</body>
+</html>

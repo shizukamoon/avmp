@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>遊び人</title>
+    
+    <!-- Masukkan kode favicon di sini -->
+    <link rel="icon" type="image/svg+xml" href="heel.svg">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Tabler Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+
+    <link rel="stylesheet" href="css/css.css">
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <navbar>
+        <a href="#" class="logo">
+            <img src="heel.svg">Shizuka
+        </a>
+        
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+
+        <div class="nav-wrapper" id="navWrapper">
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Live</a></li>
+                <li><a href="#">Model</a></li>
+                <li><a href="#">Studio</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search">
+                <i class="ti ti-search search-icon"></i>
+            </div>
+        </div>
+    </navbar>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Menggunakan Bootstrap Row untuk Grid -->
+        <div class="row g-4" id="cardContainer">
+            <!-- Card dari JavaScript akan masuk ke sini -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-container" id="pagination"></div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const dummyData = [
+            {link: "https://123av.com/en/v/mida-700-uncensored-leaked", coverImg: "https://pics.dmm.co.jp/mono/movie/adult/mida700/mida700pl.jpg", 
+            codes: "MIDA-700", 
+            tags: "Uncensored-leaks", 
+            names: "Miria Hayama 葉山みりあ", 
+            views: "-", comments: "-", date: "2026, Jul 21" },
+            {link: "https://123av.com/en/v/300mium-1379-uncensored-leaked", coverImg: "https://image.mgstage.com/images/prestigepremium/300mium/1379/pb_e_300mium-1379.jpg", 
+            codes: "300MIUM-1379", 
+            tags: "Uncensored-leaks", 
+            names: "", 
+            views: "-", comments: "-", date: "2026, Jul 19" },
+            {link: "https://123av.com/en/v/fc2-ppv-4939056", coverImg: "https://ppvdatabank.com/article/4939056/img/thumb.webp", 
+            codes: "FC2PPV-4939056", 
+            tags: "Full Uncensored", 
+            names: "【初回70%オフ・緊急リリース！】 0387_0414_003 れいらちゃん20歳 かんなちゃん18歳 ma.ma友の子持ち若妻2人をオジサンと黒人で同時に孕ませるハチャメチャNTR托卵中出し4P乱交", 
+            views: "-", comments: "-", date: "2026, Jul 19" },
+            {link: "https://123av.com/en/v/fc2-ppv-4940947", coverImg: "https://ppvdatabank.com/article/4940947/img/thumb.webp", 
+            codes: "FC2PPV-4940947", 
+            tags: "Full Uncensored", 
+            names: "潮吹き雑魚まんこ！【無】【中出し】地味で幸薄な低身長ちゃんは何でも言うことを聞くペットになった。手マンで潮吹く雑魚まんこに中出し。※特典あり", 
+            views: "-", comments: "-", date: "2026, Jul 18" },
+            {link: "https://123av.com/en/v/fc2-ppv-4940544", coverImg: "https://ppvdatabank.com/article/4940544/img/thumb.webp", 
+            codes: "FC2PPV-4940544", 
+            tags: "Full Uncensored", 
+            names: "【8/7迄1090pt】【特典】圧倒的美貌と知性を兼ね備えた色白美人。吸い付くようなカズノコ天井を巨根に激しく突かれ「だめ、イクゥ…！」と喘ぎながら何度も痙攣。締め付けマンコでオトナの精液搾取！", 
+            views: "-", comments: "-", date: "2026, Jul 17" },
+            {link: "https://123av.com/en/v/fc2-ppv-4940323", coverImg: "https://ppvdatabank.com/article/4940323/img/thumb.webp", 
+            codes: "FC2PPV-4940323", 
+            tags: "Censored", 
+            names: "【初撮り/個撮】衝撃すぎるパフィーニップル×超デカ乳輪のGカップ美女❣清純系ダイナマイトボディの看護専門生♡美巨乳が卑猥に揺れ動く生ハメ性交で危険日に膣内大量中出し♡【特典:高画質】【本編/顔モ.無】", 
+            views: "-", comments: "-", date: "2026, Jul 17" },
+            {link: "content/fc2ppv-4938500.html", coverImg: "https://ppvdatabank.com/article/4938500/img/thumb.webp", 
+            codes: "FC2PPV-4938500", 
+            tags: "Full Uncensored", 
+            names: "【無】大反響の女子アナ系色白美女降臨！上品な語り口調と見た目清楚系に反して隠語連発ドスケベ丸出し⤴網タイのナースコスが似合い過ぎ！　中だし2発　※特典高画質", 
+            views: "-", comments: "-", date: "2026, Jul 17" },
+            {link: "https://123av.com/en/v/prwf-014-uncensored-leaked", coverImg: "https://awsimgsrc.dmm.co.jp/pics_dig/digital/video/prwf00014/prwf00014pl.jpg?f=webp", 
+            codes: "PRWF-014", 
+            tags: "Uncensored-leaks", 
+            names: "Sora Komatsu 小松空", 
+            views: "-", comments: "-", date: "2026, Jul 17" },
+            {link: "https://123av.com/en/v/mihd-006-uncensored-leaked", coverImg: "https://awsimgsrc.dmm.co.jp/pics_dig/digital/video/mihd00006/mihd00006pl.jpg?f=webp", 
+            codes: "MIHD-006", 
+            tags: "Uncensored-leaks", 
+            names: "Hinako Mori 森日向子", 
+            views: "-", comments: "-", date: "2026, Jul 16" },
+            {link: "https://123av.com/en/v/292my-1068-uncensored-leaked", coverImg: "https://image.mgstage.com/images/mywife/292my/1068/pb_e_292my-1068.jpg", 
+            codes: "292MY-1068", 
+            tags: "Uncensored-leaks", 
+            names: "Mizuki Fukuhara 福原みづき", 
+            views: "-", comments: "-", date: "2026, Jul 16" },
+            {link: "https://123av.com/en/v/hsoda-124-uncensored-leaked", coverImg: "https://pics.dmm.co.jp/mono/movie/adult/hsoda124/hsoda124pl.jpg", 
+            codes: "HSODA-124", 
+            tags: "Uncensored-leaks", 
+            names: "Nanao Ayatsuki 彩月七緒", 
+            views: "-", comments: "-", date: "2026, Jul 14" },
+            {link: "https://123av.com/en/v/fc2-ppv-4938235", coverImg: "https://ppvdatabank.com/article/4938235/img/thumb.webp", 
+            codes: "FC2PPV-4938235", 
+            tags: "Full Uncensored", 
+            names: "先着割【無】町一番の美女と昼間から汗だくセックス【特典有】", 
+            views: "-", comments: "Real Creampie", date: "2026, Jul 13" },
+            {link: "https://123av.com/en/v/fc2-ppv-4937974", coverImg: "https://contents-thumbnail2.fc2.com/w276/storage201000.contents.fc2.com/file/372/37151217/1783839170.28.jpg", 
+            codes: "FC2PPV-4937974", 
+            tags: "Full Uncensored", 
+            names: "【初撮り】【70%OFF】【顔出し】美乳・美尻のスレンダー美女を初めて黒人巨根で分からせ生中出し孕ませSEX！", 
+            views: "-", comments: "-", date: "2026, Jul 12" },
+            {link: "https://123av.com/en/v/fc2-ppv-4934976", coverImg: "https://contents-thumbnail2.fc2.com/w276/storage201000.contents.fc2.com/file/407/40667347/1783411004.62.jpg", 
+            codes: "FC2PPV-4934976", 
+            tags: "Censored", 
+            names: "《個撮》「一緒にイキたい♡」とおねだりも喘ぎ声も可愛いけど積極的な女子とハメ撮り／仁衣菜(24\)", 
+            views: "-", comments: "-", date: "2026, Jul 12" },
+            {link: "https://123av.com/en/v/fc2-ppv-4931518", coverImg: "https://contents-thumbnail2.fc2.com/w276/storage201000.contents.fc2.com/file/394/39375031/1782893572.1.png", 
+            codes: "FC2PPV-4931518", 
+            tags: "Full Uncensored", 
+            names: "A tight dress showing off her figure and thong panties for Kotori Suzumiya", 
+            views: "-", comments: "-", date: "2026, Jul 12" },
+            {link: "https://123av.com/en/v/fc2-ppv-4937199", coverImg: "https://contents-thumbnail2.fc2.com/w276/storage201000.contents.fc2.com/file/408/40749754/1783682721.86.jpg", 
+            codes: "FC2PPV-4937199", 
+            tags: "Full Uncensored", 
+            names: "アプリで見つけた奇跡の地下アイドル登場！レッスン帰りに大量精子を中に出してあげました！", 
+            views: "-", comments: "-", date: "2026, Jul 11" },
+            {link: "https://123av.com/en/v/1pondo-071126_001", coverImg: "https://dream.hiyopi.com/071126_001/002.jpg", 
+            codes: "1PONDO-071126_001", 
+            tags: "Full Uncensored", 
+            names: "Erina Hayakawa Graduation gift from my mother-in-law", 
+            views: "-", comments: "-", date: "2026, Jul 11" },
+            {link: "https://123av.com/en/v/fc2-ppv-4937511", coverImg: "https://ppvdatabank.com/article/4937511/img/thumb.webp", 
+            codes: "FC2PPV-4937511", 
+            tags: "Full Uncensored", 
+            names: "超SSS級新作★期待してかまいません/18歳の初心で超美白ドピンクオマヌコ半ば強〇にキスしハメ・・途中から泣きだし中に出てるのを知るとガチ泣きしました/限定特典有", 
+            views: "-", comments: "-", date: "2026, Jul 11" },
+            {link: "https://123av.com/en/v/fc2-ppv-4937297", coverImg: "https://ppvdatabank.com/article/4937297/img/thumb.webp", 
+            codes: "FC2PPV-4937297", 
+            tags: "Full Uncensored", 
+            names: "「下着だけって言ったのぃ…」黒髪清楚系が金に釣られて即尺＆生挿入！膣内はダメって拒否したのに中出しされた激チョロ素人モデルの個撮体験", 
+            views: "-", comments: "-", date: "2026, Jul 11" },
+            {link: "https://123av.com/en/v/fc2-ppv-4937281", coverImg: "https://ppvdatabank.com/article/4937281/img/thumb.webp", 
+            codes: "FC2PPV-4937281", 
+            tags: "Full Uncensored", 
+            names: "唯一無二の可愛さでどこに行っても無双しまくる究極の美女と奇跡的な出会い！人生初のハメ撮りで人生初の中出しを！？", 
+            views: "-", comments: "-", date: "2026, Jul 11" },
+            {link: "https://123av.com/en/v/fc2-ppv-4936069", coverImg: "https://ppvdatabank.com/article/4936069/img/thumb.webp", 
+            codes: "FC2PPV-4936069", 
+            tags: "Full Uncensored", 
+            names: "※すぐ消す【個数制限あり】明日公開ﾃﾞﾋﾞｭｰする女優の無修正中出し動画。確実に揉めるのでお早めに。後悔させません", 
+            views: "-", comments: "-", date: "2026, Jul 10" },
+            {link: "https://123av.com/en/v/skmj-767-uncensored-leaked", coverImg: "https://awsimgsrc.dmm.co.jp/pics_dig/digital/video/h_1324skmj00767/h_1324skmj00767pl.jpg?f=webp", 
+            codes: "SKMJ-767", 
+            tags: "Uncensored-leaks", 
+            names: "", 
+            views: "-", comments: "-", date: "2026, Jul 10" },
+            {link: "https://123av.com/en/v/fc2-ppv-4936593", coverImg: "https://contents-thumbnail2.fc2.com/w276/storage201000.contents.fc2.com/file/397/39644488/1783675083.67.png", 
+            codes: "FC2PPV-4936593", 
+            tags: "Censored", 
+            names: "【初撮り/個撮】清楚系お嬢様の決定版❣モデル級の高身長と巨乳スレンダーの圧倒的スタイル♡キツキツおマンコに巨根チンポを生挿入して膣奥中出し計2発射で受精不可避♡【特典:高画質】【本編/顔モ.無】", 
+            views: "-", comments: "-", date: "2026, Jul 10" },
+            {link: "https://123av.com/en/v/fc2-ppv-4936496", coverImg: "https://contents-thumbnail2.fc2.com/w276/storage201000.contents.fc2.com/file/377/37682362/1783644202.8.jpg", 
+            codes: "FC2PPV-4936496", 
+            tags: "Full Uncensored", 
+            names: "※再販※【野外ハメ撮り】【顔出し】某S□Sでエン上してしまった人妻再来。こちらが心配になるレベルのぶっ飛び具合です", 
+            views: "-", comments: "-", date: "2026, Jul 10" },
+            {link: "https://123av.com/en/v/fc2-ppv-4934258", coverImg: "https://ppvdatabank.com/article/4934258/img/thumb.webp", 
+            codes: "FC2PPV-4934258", 
+            tags: "Full Uncensored", 
+            names: "【無】いつ見ても美しいビジュアルの長身スレンダー美女！久しぶりに会ったせいなのか何度も求められて三連発！ゴックン　大量顔射　中だし　※特典高画質", 
+            views: "-", comments: "-", date: "2026, Jul 10" },
+            {link: "https://123av.com/en/v/fc2-ppv-4936167", coverImg: "https://ppvdatabank.com/article/4936167/img/thumb.webp", 
+            codes: "FC2PPV-4936167", 
+            tags: "Full Uncensored", 
+            names: "19歳の可憐な色白の華奢な美●女！儚い見た目とは裏腹に隠し切れない敏感なカラダにこっそり中出し。マンコで学ぶオトナの色気。", 
+            views: "-", comments: "-", date: "2026, Jul 10" },
+            {link: "https://123av.com/en/v/fc2-ppv-4936500", coverImg: "https://ppvdatabank.com/article/4936500/img/thumb.webp", 
+            codes: "FC2PPV-4936500", 
+            tags: "Full Uncensored", 
+            names: "【顔出し未公開映像】SSS級18歳の美容系志望ゆいちゃん。白肌スレンダーな制服美女のピンクおま●こに初のオジザーメン中出し。唯一無二。", 
+            views: "-", comments: "-", date: "2026, Jul 10" },
+            {link: "https://123av.com/en/v/fc2-ppv-4932682", coverImg: "https://ppvdatabank.com/article/4932682/img/thumb.webp", 
+            codes: "FC2PPV-4932682", 
+            tags: "Full Uncensored", 
+            names: "25％OFF【SS級続編】前作大好評だった。ナースちゃんの続編！！！メンエスプレイにちんこ暴発寸前。たまらず攻守交代で潮吹き祭り！", 
+            views: "-", comments: "-", date: "2026, Jul 10" },
+            {link: "https://123av.com/en/v/fc2-ppv-4936485", coverImg: "https://ppvdatabank.com/article/4936485/img/thumb.webp", 
+            codes: "FC2PPV-4936485", 
+            tags: "Full Uncensored", 
+            names: "色白美乳神ボディなひまりちゃん19歳　 アイドル以上の可愛さ！夢は小学校の先生　 夢のための学費が払えなく出演決意 　 彼氏君が仕事中に生交尾で中イキ♡ 濃厚精液を中出ししちゃいました！", 
+            views: "-", comments: "-", date: "2026, Jul 10" },
+            {link: "https://123av.com/en/v/fc2-ppv-4918452", coverImg: "https://ppvdatabank.com/article/4918452/img/thumb.webp", 
+            codes: "FC2PPV-4918452", 
+            tags: "Full Uncensored", 
+            names: "※再販修正版 70％OFF【初撮り】色白スレンダー１８歳のキレイなカラダを汚します。エロス漂うぴちぴちガールは潮吹き体質のクジラちゃん。たまらずゴムなし挿入からの中出しで大満足！！", 
+            views: "-", comments: "-", date: "2026, Jul 09" },
+            {link: "https://123av.com/en/v/fc2-ppv-4934852", coverImg: "https://ppvdatabank.com/article/4934852/img/thumb.webp", 
+            codes: "FC2PPV-4934852", 
+            tags: "Full Uncensored", 
+            names: "【7/28迄1290pt】【初撮】※19歳 グラビアアイドルに負けない美ボディムスメ。「あぁ、気持ちいい！」グチョグチョマンコに激ピストンで突っ込みまくり、喘ぎながらビクビク痙攣。締め付け膣奥に中出し", 
+            views: "-", comments: "-", date: "2026, Jul 07" },
+            {link: "https://123av.com/en/v/snos-269-uncensored-leaked", coverImg: "https://awsimgsrc.dmm.co.jp/pics_dig/digital/video/snos00269/snos00269pl.jpg?f=webp", 
+            codes: "SNOS-269", 
+            tags: "Uncensored-leaks", 
+            names: "Kiho Kanematsu 金松季歩", 
+            views: "-", comments: "-", date: "2026, Jul 14" },
+            {link: "https://123av.com/en/v/snos-258-uncensored-leaked", coverImg: "https://awsimgsrc.dmm.co.jp/pics_dig/digital/video/snos00286/snos00286pl.jpg?f=webp", 
+            codes: "SNOS-258", 
+            tags: "Uncensored-leaks", 
+            names: "安達夕莉 咲まどか 河北笑茉", 
+            views: "-", comments: "-", date: "2026, Jul 10" },
+            {link: "https://123av.com/en/v/snos-258-uncensored-leaked", coverImg: "https://pics.dmm.co.jp/mono/movie/adult/snos258/snos258pl.jpg", 
+            codes: "SNOS-258", 
+            tags: "Uncensored-leaks", 
+            names: "Kanna Seto 瀬戸環奈", 
+            views: "-", comments: "-", date: "2026, Jul 14" },
+            {link: "https://123av.com/en/v/caribbeancom-071226-001", coverImg: "https://caribbeancom.hiyopi.com/071226-001/001.jpg", 
+            codes: "CARIBBEANCOM-071226-001", 
+            tags: "Full Uncensored", 
+            names: "Shared Lovers: Him, Me, and His Friend", 
+            views: "-", comments: "-", date: "2026, Jul 12" },
+            {link: "https://123av.com/en/v/caribbeancom-071126-001", coverImg: "https://caribbeancom.hiyopi.com/051226-001/003.jpg", 
+            codes: "CARIBBEANCOM-071126-001", 
+            tags: "Full Uncensored", 
+            names: "Non Stop XXX for 180min : A proactive, horny older sister's multiple orgasms Part. 1", 
+            views: "-", comments: "-", date: "2026, Jul 11" },
+            {link: "https://123av.com/en/v/jur-091-uncensored-leaked", coverImg: "https://awsimgsrc.dmm.co.jp/pics_dig/digital/video/jur00091/jur00091pl.jpg?f=webp", 
+            codes: "JUR-091", 
+            tags: "Uncensored-leaks", 
+            names: "Ichika いち花", 
+            views: "-", comments: "-", date: "2026, Jul 10" },
+            {link: "https://123av.com/en/v/nmsl-043-uncensored-leaked", coverImg: "https://awsimgsrc.dmm.co.jp/pics_dig/digital/video/h_1814nmsl00043/h_1814nmsl00043pl.jpg?f=webp", 
+            codes: "NMSL-043", 
+            tags: "Uncensored-leaks", 
+            names: "Rei Kuroshima 黒島玲衣", 
+            views: "-", comments: "-", date: "2026, Jul 09" },
+            {link: "https://123av.com/en/v/snos-276-uncensored-leaked", coverImg: "https://pics.dmm.co.jp/mono/movie/adult/snos276/snos276pl.jpg", 
+            codes: "SNOS-276", 
+            tags: "Uncensored-leaks", 
+            names: "Rui Shido 紫堂るい", 
+            views: "-", comments: "-", date: "2026, Jul 09" },
+            {link: "https://123av.com/en/v/abf-369-uncensored-leaked", coverImg: "https://image.mgstage.com/images/prestige/abf/369/pb_e_abf-369.jpg", 
+            codes: "ABF-369", 
+            tags: "Uncensored-leaks", 
+            names: "Shizuka Takimoto 瀧本雫葉", 
+            views: "-", comments: "-", date: "2026, Jul 09" },
+            {link: "https://123av.com/en/v/abf-367-uncensored-leaked", coverImg: "https://image.mgstage.com/images/prestige/abf/367/pb_e_abf-367.jpg", 
+            codes: "ABF-367", 
+            tags: "Uncensored-leaks", 
+            names: "Remu Suzumori 涼森れむ", 
+            views: "-", comments: "-", date: "2026, Jul 09" },
+            {link: "https://123av.com/en/v/caribbeancom-070726-001", coverImg: "https://caribbeancom.hiyopi.com/070726-001/001.jpg", 
+            codes: "CARIBBEANCOM-070726-001", 
+            tags: "Full Uncensored", 
+            names: "The Ecstasy: A passionate, intense kissing and sex session between adults", 
+            views: "-", comments: "-", date: "2026, Jul 07" },
+            {link: "https://123av.com/en/v/fc2-ppv-4932942", coverImg: "https://contents-thumbnail2.fc2.com/w276/storage201000.contents.fc2.com/file/397/39644488/1783057221.71.png", 
+            codes: "FC2PPV-4932942", 
+            tags: "Censored", 
+            names: "【独占/個撮】エロムチ天使がFC2に爆誕❣巨乳Gカップのアイドル級JD♡極上エロボディ丸見えの生着替え記録。名器マンコに彼女に内緒の2連続中出ししちゃいました♡【特典:高画質】【本編/顔モ.無】", 
+            views: "-", comments: "-", date: "2026, Jul 03" },
+            {link: "https://123av.com/en/v/1pondo-070226_001", coverImg: "https://dream.hiyopi.com/070226_001/002.jpg", 
+            codes: "1PONDO-070226_001", 
+            tags: "Full Uncensored", 
+            names: "Welcome to the Creampie Cum Toilet: Ayana Yamagishi", 
+            views: "-", comments: "-", date: "2026, Jul 02" },
+            {link: "content/fc2ppv-4930958.html", coverImg: "https://ppvdatabank.com/article/4930958/img/thumb.webp", 
+            codes: "FC2PPV-4930958", 
+            tags: "Full Uncensored", 
+            names: "【初撮り/SSS超絶美女の美裸体】超有名タレントファッションモデル事務所所属。圧倒的スタイルと洗練されたエロス。彼氏に内緒でオトコを惑わす熱くキツイ膣内に精液をぶちまける。", 
+            views: "-", comments: "-", date: "2026, Jul 01" },
+            {link: "https://123av.com/en/v/10musume-062626_01", coverImg: "https://nude.hiyopi.com/062626_01/002.jpg", 
+            codes: "10MUSUME-062626_01", 
+            tags: "Full Uncensored", 
+            names: "Pussy to Mouth Sex: Hitomi Tanmura", 
+            views: "-", comments: "-", date: "2026, Jun 26" },
+            {link: "https://123av.com/en/v/ps-130-uncensored-leaked", coverImg: "https://awsimgsrc.dmm.co.jp/pics_dig/digital/video/h_113ps00130/h_113ps00130pl.jpg?f=webp", 
+            codes: "PS-130", 
+            tags: "Uncensored-leaks", 
+            names: "Ema Kawakita 河北笑茉", 
+            views: "-", comments: "-", date: "2026, Jun 25" },
+            {link: "https://123av.com/en/v/300mium-1363-uncensored-leaked", coverImg: "https://image.mgstage.com/images/prestigepremium/300mium/1363/pb_e_300mium-1363.jpg", 
+            codes: "300MIUM-1363", 
+            tags: "Uncensored-leaks", 
+            names: "Yuno Sakura 桜ゆの", 
+            views: "-", comments: "-", date: "2026, Jun 21" },
+            {link: "https://123av.com/en/v/fc2-ppv-4924207", coverImg: "https://contents-thumbnail2.fc2.com/w276/storage201000.contents.fc2.com/file/339/33817483/1781922355.jpg", 
+            codes: "FC2PPV-4924207", 
+            tags: "Censored", 
+            names: "Kanna Natsumi なつみ柑奈", 
+            views: "-", comments: "-", date: "2026, Jun 20" },
+            {link: "https://123av.com/en/v/snos-213-uncensored-leaked", coverImg: "https://awsimgsrc.dmm.co.jp/pics_dig/digital/video/snos00213/snos00213pl.jpg?f=webp", 
+            codes: "SNOS-213", 
+            tags: "Uncensored-leaks", 
+            names: "Kanon Hayasaka 早坂奏音", 
+            views: "-", comments: "-", date: "2026, Jun 19" },
+            {link: "https://123av.com/en/v/fc2-ppv-4923716", coverImg: "https://contents-thumbnail2.fc2.com/w276/storage201000.contents.fc2.com/file/397/39644488/1781850112.55.png", 
+            codes: "FC2PPV-4923716", 
+            tags: "Censored", 
+            names: "【初撮り/個撮】黒髪清楚な爆乳おねえさん❣高身長×Hカップの巨乳美女OL♡美裸体丸出しの生着替え観察。パイパン美マンコに生挿入で連続濃厚中出し♡【特典:高画質】【本編/顔モ.無】", 
+            views: "-", comments: "-", date: "2026, Jun 19" },
+            {link: "https://123av.com/en/v/rebd-1044", coverImg: "https://awsimgsrc.dmm.co.jp/pics_dig/digital/video/h_346rebd01044/h_346rebd01044pl.jpg?f=webp", 
+            codes: "REBD-1044", 
+            tags: "Nude Gravure", 
+            names: "Mitsuha Ashitaba 明日葉みつは", 
+            views: "-", comments: "-", date: "2026, Jun 18" },
+            {link: "https://123av.com/en/v/fc2-ppv-4919279", coverImg: "https://ppvdatabank.com/article/4919279/img/thumb.webp", 
+            codes: "FC2PPV-4919279", 
+            tags: "Full Uncensored", 
+            names: "【初撮り顔出し】殿堂入り必至SSS級極上19歳美容専門生ゆいちゃん。圧倒的美形の白肌スレンダー。恥じらいピンクおま●こに特濃おじ精子大量中出し。永久保存版。", 
+            views: "-", comments: "-", date: "2026, Jun 12" },
+            {link: "https://123av.com/en/v/fc2-ppv-4919870", coverImg: "https://contents-thumbnail2.fc2.com/w276/storage201000.contents.fc2.com/file/397/39644488/1781240287.27.png", 
+            codes: "FC2PPV-4919870", 
+            tags: "Censored", 
+            names: "【初撮り/個撮】ロケット巨乳×特大乳輪❣天使級Gカップのアイドル級美女♡柔乳が激しく揺れる生ハメバックピストンで膣奥に想定外の中出し2発射されて受精不可避♡【特典:高画質】【本編/顔モ.無】", 
+            views: "-", comments: "-", date: "2026, Jun 12" },
+            {link: "https://123av.com/en/v/fc2-ppv-4915550", coverImg: "https://contents-thumbnail2.fc2.com/w276/storage201000.contents.fc2.com/file/397/39644488/1780756387.46.png", 
+            codes: "FC2PPV-4915550", 
+            tags: "Censored", 
+            names: "【初撮り/個撮】箱入りお嬢様は細身巨乳な神ボディ❣清楚系黒髪美女の決定版♡エグすぎる膣圧の激狭マンコに生挿入したら中出し計2発射も膣内に暴発しちゃいました♡【特典:高画質】【本編/顔モ.無】", 
+            views: "-", comments: "-", date: "2026, Jun 05" },
+            {link: "https://123av.com/en/v/ps-129-uncensored-leaked", coverImg: "https://awsimgsrc.dmm.co.jp/pics_dig/digital/video/h_113ps00129/h_113ps00129pl.jpg?f=webp", 
+            codes: "PS-129", 
+            tags: "Uncensored-leaks", 
+            names: "Rio Oikawa 及川莉央", 
+            views: "-", comments: "-", date: "2026, May 29" },
+            {link: "https://123av.com/en/v/fc2-ppv-4909954", coverImg: "https://contents-thumbnail2.fc2.com/w276/storage201000.contents.fc2.com/file/397/39644488/1780039043.2.png", 
+            codes: "FC2PPV-4909954", 
+            tags: "Censored", 
+            names: "【独占/個撮】大人気TikToker兼アイドル『あ●ち。』電撃デビュー!?❣グラドル級スタイル抜群な細身巨乳ボディ解禁♡巨根チンポで生膣掻き回されて中出しされちゃう♡【特典:高画質】【本編/顔モ.無】", 
+            views: "-", comments: "-", date: "2026, May 29" },
+            {link: "https://123av.com/en/v/mihd-001-uncensored-leaked", coverImg: "https://awsimgsrc.dmm.co.jp/pics_dig/digital/video/mihd00001/mihd00001pl.jpg?f=webp", 
+            codes: "MIHD-001", 
+            tags: "Uncensored-leaks", 
+            names: "Aoi Ibuki 葵いぶき", 
+            views: "-", comments: "-", date: "2026, May 14" },
+            {link: "https://123av.com/en/v/fc2-ppv-4897346", coverImg: "https://contents-thumbnail2.fc2.com/w276/storage200000.contents.fc2.com/file/372/37151217/1778210827.82.jpg", 
+            codes: "FC2PPV-4897346", 
+            tags: "Full Uncensored", 
+            names: "本当に可愛くて、美乳・美尻の美女あいちゃん#8を呼んで分からせ生中出し孕ませSEXしてきた！", 
+            views: "-", comments: "-", date: "2026, May 08" },
+            {link: "content/fc2ppv-4889712.html", coverImg: "https://ppvdatabank.com/article/4889712/img/thumb.webp", 
+            codes: "FC2PPV-4889712", 
+            tags: "Full Uncensored", 
+            names: "【無】大反響の女子アナ系清楚系美女！この感じが本来のこの女性の姿なのかもしれません⤴あの余裕ある笑みの秘密が凄すぎた…、ワンカット撮影での臨場感！　※特典高画質", 
+            views: "-", comments: "-", date: "2026, May 01" },
+            {link: "content/fc2ppv-4884534.html", coverImg: "https://ppvdatabank.com/article/4884534/img/thumb.webp", 
+            codes: "FC2PPV-4884534", 
+            tags: "Full Uncensored", 
+            names: "【無】色白美乳！ウェザーニュース女子アナに居てもおかしくないビジュアル！知的な雰囲気で大人しそうな感じが豹変⤴急に「オ〇サンのチ〇ポ欲しい～」と懇願　ゴックン中だし※特典高画質", 
+            views: "-", comments: "-", date: "2026, Apr 24" },
+            {link: "https://123av.com/en/v/debz-015-uncensored-leaked", coverImg: "https://awsimgsrc.dmm.co.jp/pics_dig/digital/amateur/debz015/debz015jp-002.jpg?f=webp", 
+            codes: "DEBZ-015", 
+            tags: "Uncensored-leaks", 
+            names: "Nanao Ayatsuki 彩月七緒", 
+            views: "-", comments: "-", date: "2026, Mar 05" },
+            {link: "https://123av.com/en/v/naac-056b", coverImg: "https://pics.dmm.co.jp/mono/movie/adult/n_1541naac056b/n_1541naac056bpl.jpg", 
+            codes: "NAAC-056B", 
+            tags: "Nude Gravure", 
+            names: "Honoka Watanabe 渡部ほの", 
+            views: "-", comments: "-", date: "2026, Feb 28" },
+            {link: "https://123av.com/en/v/fc2-ppv-4856699", coverImg: "https://ppvdatabank.com/article/4856699/img/thumb.webp", 
+            codes: "FC2PPV-4856699", 
+            tags: "Full Uncensored", 
+            names: "先着割【無】本物美女の夏休みの汗だくハメ撮りセックス.【本日限定】", 
+            views: "-", comments: "Real Creampie", date: "2026, Feb 28" },
+            {link: "https://123av.com/en/v/hawa-366-uncensored-leaked", coverImg: "https://pics.dmm.co.jp/mono/movie/adult/1hawa366/1hawa366pl.jpg", 
+            codes: "HAWA-366", 
+            tags: "Censored", 
+            names: "Kanna Natsumi なつみ柑奈", 
+            views: "-", comments: "-", date: "2025, Dec 18" },
+            {link: "https://123av.com/en/v/326fct-187-uncensored-leaked", coverImg: "https://image.mgstage.com/images/kurofune/326fct/187/pb_e_326fct-187.jpg", 
+            codes: "326FCT-187", 
+            tags: "Uncensored-leaks", 
+            names: "Riisa Kisaragi 如月りいさ", 
+            views: "-", comments: "-", date: "2025, Nov 14" },
+            {link: "https://123av.com/en/v/fc2-ppv-4752298", coverImg: "https://contents-thumbnail2.fc2.com/w276/storage201000.contents.fc2.com/file/339/33817483/1756522060.2.jpg", 
+            codes: "FC2PPV-4752298", 
+            tags: "Censored", 
+            names: "Riisa Kisaragi 如月りいさ", 
+            views: "-", comments: "-", date: "2025, Aug 30" },
+            {link: "https://123av.com/en/v/326eva-206-uncensored-leaked", coverImg: "https://image.mgstage.com/images/kurofune/326eva/206/pb_e_326eva-206.jpg", 
+            codes: "326EVA-206", 
+            tags: "Uncensored-leaks", 
+            names: "Riisa Kisaragi 如月りいさ", 
+            views: "-", comments: "-", date: "2025, May 04" },
+            {link: "https://123av.com/en/v/420sth-094-uncensored-leaked", coverImg: "https://image.mgstage.com/images/hoihoiz/420sth/094/pb_e_420sth-094.jpg", 
+            codes: "420STH-094", 
+            tags: "Uncensored-leaks", 
+            names: "Riisa Kisaragi 如月りいさ", 
+            views: "-", comments: "-", date: "2025, Jan 25" },
+            {link: "https://123av.com/en/v/lbj-036-uncensored-leaked", coverImg: "https://awsimgsrc.dmm.co.jp/pics_dig/digital/video/1lbj00036/1lbj00036pl.jpg?f=webp", 
+            codes: "LBJ-036", 
+            tags: "Uncensored-leaks", 
+            names: "Riisa Kisaragi 如月りいさ", 
+            views: "-", comments: "Real Creampie", date: "2024, Nov 20" },
+            {link: "https://123av.com/en/v/fc2-ppv-3780078", coverImg: "https://ppvdatabank.com/article/3780078/img/thumb.webp", 
+            codes: "FC2PPV-3780078", 
+            tags: "Censored", 
+            names: "【総額80万越え裏コース】六本木高級メンズエステ在籍。バスト100超え爆乳セラピスト。※豪華4K別途映像", 
+            views: "-", comments: "-", date: "2023, Sep 07" },
+            {link: "https://123av.com/en/v/fc2-ppv-3280265", coverImg: "https://ppvdatabank.com/article/3280265/img/thumb.webp", 
+            codes: "FC2PPV-3280265", 
+            tags: "Censored", 
+            names: "絶対的美小女あかりちゃんを男！おじさん！おっさん！男！でやっちゃいました", 
+            views: "-", comments: "-", date: "2023, Apr 27" },
+            {link: "https://123av.com/en/v/fc2-ppv-3230923", coverImg: "https://ppvdatabank.com/article/3230923/img/thumb.webp", 
+            codes: "FC2PPV-3230923", 
+            tags: "Censored", 
+            names: "※限定価格【顔出し】美巨乳×網タイツのエロイ美容師のお姉さんと生ハメSEX！男を翻弄する小悪魔エロス全開のクール系美女が身もだえ絶頂！連続中出し精鋭搾り取られる", 
+            views: "-", comments: "-", date: "2023, Mar 22" }
+        ];
+
+        /* === BURGER MENU LOGIC === */
+        const hamburger = document.getElementById('hamburger');
+        const navWrapper = document.getElementById('navWrapper');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navWrapper.classList.toggle('active');
+        });
+
+        /* === APP LOGIC (Search & Pagination) === */
+        const ITEMS_PER_PAGE = 9;
+        let currentPage = 1;
+        let filteredData = [...dummyData];
+
+        const cardContainer = document.getElementById('cardContainer');
+        const paginationContainer = document.getElementById('pagination');
+        const searchInput = document.getElementById('searchInput');
+
+        // Fungsi Render Cards
+        function renderCards() {
+            cardContainer.innerHTML = '';
+
+            if (filteredData.length === 0) {
+                cardContainer.innerHTML = `<div class="empty-state">Tidak ada artikel yang sesuai dengan pencarian Anda.</div>`;
+                return;
+            }
+
+            const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+            const endIndex = startIndex + ITEMS_PER_PAGE;
+            const cardsToShow = filteredData.slice(startIndex, endIndex);
+
+            cardsToShow.forEach(item => {
+                const cardHTML = `
+                    <div class="col-lg-4 col-md-6">
+                      <a href="${item.link}" class="text-decoration-none">
+                      <div class="card overflow-hidden hover-img h-100">
+                        <div class="position-relative">
+                          <img src="${item.coverImg}" class="card-img-top w-100" alt="cover-img">
+                        </div>
+                        <div class="card-body p-4 mt-2">
+                          <span class="badge text-bg-light fs-6 py-1 px-2 lh-sm mt-2">${item.codes || ''}</span>
+                          <span class="badge text-bg-light fs-6 py-1 px-2 lh-sm mt-2">${item.tags || ''}</span>
+                          <h5 class="d-block my-4 fs-5 text-dark fw-semibold link-primary">${item.names || ''}</h5>
+                          <div class="d-flex align-items-center gap-4">
+                            <div class="d-flex align-items-center gap-2 text-dark">
+                              <i class="ti ti-eye text-dark fs-5"></i>${item.views || '-'}
+                            </div>
+                            <div class="d-flex align-items-center gap-2 text-dark">
+                              <i class="ti ti-message-2 text-dark fs-5"></i>${item.comments || '-'}
+                            </div>
+                            <div class="d-flex align-items-center text-dark ms-auto">
+                              <i class="ti ti-point text-dark"></i>${item.date || ''}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </a>
+                    </div>
+                `;
+                cardContainer.insertAdjacentHTML('beforeend', cardHTML);
+            });
+
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+        }
+
+        // Fungsi Render Paginasi
+        function renderPagination() {
+            paginationContainer.innerHTML = '';
+            const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
+
+            if (totalPages <= 1) return;
+
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'page-btn';
+            prevBtn.innerText = 'Prev';
+            prevBtn.disabled = currentPage === 1;
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) { currentPage--; updateView(); }
+            });
+            paginationContainer.appendChild(prevBtn);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+                pageBtn.innerText = i;
+                pageBtn.addEventListener('click', () => {
+                    currentPage = i; updateView();
+                });
+                paginationContainer.appendChild(pageBtn);
+            }
+
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'page-btn';
+            nextBtn.innerText = 'Next';
+            nextBtn.disabled = currentPage === totalPages;
+            nextBtn.addEventListener('click', () => {
+                if (currentPage < totalPages) { currentPage++; updateView(); }
+            });
+            paginationContainer.appendChild(nextBtn);
+        }
+
+        function updateView() {
+            renderCards();
+            renderPagination();
+        }
+                
+        // Event Listener Pencarian
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            
+            filteredData = dummyData.filter(item => 
+                (item.title?.toLowerCase().includes(query)) || 
+                (item.category?.toLowerCase().includes(query)) ||
+                (item.authorName?.toLowerCase().includes(query)) ||
+                (item.names?.toLowerCase().includes(query)) ||
+                (item.tags?.toLowerCase().includes(query)) ||
+                (item.codes?.toLowerCase().includes(query))
+            );
+            
+            currentPage = 1;
+            updateView();
+        });
+
+        // Inisialisasi Awal
+        updateView();
+
+    </script>
+</body>
+</html>
