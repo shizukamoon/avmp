@@ -558,42 +558,96 @@
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
             [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
         }
+// Fungsi Render Paginasi
+function renderPagination() {
+    paginationContainer.innerHTML = '';
+    const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
 
-        // Fungsi Render Paginasi
-        function renderPagination() {
-            paginationContainer.innerHTML = '';
-            const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
+    if (totalPages <= 1) return;
 
-            if (totalPages <= 1) return;
+    // Tombol Prev
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'page-btn';
+    prevBtn.innerText = 'Prev';
+    prevBtn.disabled = currentPage === 1;
+    prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) { currentPage--; updateView(); }
+    });
+    paginationContainer.appendChild(prevBtn);
 
-            const prevBtn = document.createElement('button');
-            prevBtn.className = 'page-btn';
-            prevBtn.innerText = 'Prev';
-            prevBtn.disabled = currentPage === 1;
-            prevBtn.addEventListener('click', () => {
-                if (currentPage > 1) { currentPage--; updateView(); }
-            });
-            paginationContainer.appendChild(prevBtn);
+    // Fungsi bantu untuk membuat tombol angka
+    const createPageBtn = (i) => {
+        const pageBtn = document.createElement('button');
+        pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+        pageBtn.innerText = i;
+        pageBtn.addEventListener('click', () => {
+            currentPage = i; updateView();
+        });
+        paginationContainer.appendChild(pageBtn);
+    };
 
-            for (let i = 1; i <= totalPages; i++) {
-                const pageBtn = document.createElement('button');
-                pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
-                pageBtn.innerText = i;
-                pageBtn.addEventListener('click', () => {
-                    currentPage = i; updateView();
-                });
-                paginationContainer.appendChild(pageBtn);
-            }
+    // Fungsi bantu untuk membuat ellipsis (...)
+    const createEllipsis = () => {
+        const span = document.createElement('span');
+        span.className = 'page-btn ellipsis';
+        span.innerText = '...';
+        // Styling tambahan agar terlihat seperti teks biasa, bukan tombol
+        span.style.pointerEvents = 'none'; 
+        span.style.background = 'transparent';
+        span.style.border = 'none';
+        span.style.color = '#333';
+        paginationContainer.appendChild(span);
+    };
 
-            const nextBtn = document.createElement('button');
-            nextBtn.className = 'page-btn';
-            nextBtn.innerText = 'Next';
-            nextBtn.disabled = currentPage === totalPages;
-            nextBtn.addEventListener('click', () => {
-                if (currentPage < totalPages) { currentPage++; updateView(); }
-            });
-            paginationContainer.appendChild(nextBtn);
+    // Logika Ellipsis: Jika total halaman 5 atau kurang, tampilkan semua
+    if (totalPages <= 5) {
+        for (let i = 1; i <= totalPages; i++) {
+            createPageBtn(i);
         }
+    } else {
+        // Selalu tampilkan halaman 1
+        createPageBtn(1);
+
+        // Jika halaman saat ini cukup jauh dari awal, tambahkan ...
+        if (currentPage > 3) {
+            createEllipsis();
+        }
+
+        // Tentukan range halaman di tengah (maksimal 3 angka berurutan)
+        let startPage = Math.max(2, currentPage - 1);
+        let endPage = Math.min(totalPages - 1, currentPage + 1);
+
+        // Penyesuaian jika berada di ujung awal atau akhir
+        if (currentPage === 1) {
+            endPage = 3;
+        } else if (currentPage === totalPages) {
+            startPage = totalPages - 2;
+        }
+
+        // Tampilkan angka di tengah
+        for (let i = startPage; i <= endPage; i++) {
+            createPageBtn(i);
+        }
+
+        // Jika halaman saat ini cukup jauh dari akhir, tambahkan ...
+        if (currentPage < totalPages - 2) {
+            createEllipsis();
+        }
+
+        // Selalu tampilkan halaman terakhir
+        createPageBtn(totalPages);
+    }
+
+    // Tombol Next
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'page-btn';
+    nextBtn.innerText = 'Next';
+    nextBtn.disabled = currentPage === totalPages;
+    nextBtn.addEventListener('click', () => {
+        if (currentPage < totalPages) { currentPage++; updateView(); }
+    });
+    paginationContainer.appendChild(nextBtn);
+}
 
         function updateView() {
             renderCards();
