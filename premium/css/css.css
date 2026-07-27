@@ -165,7 +165,6 @@
 
         .hover-img .card-img-top {
             height: 250px;
-            width: auto;
             object-fit: cover;
             transition: transform 0.6s ease;
         }
